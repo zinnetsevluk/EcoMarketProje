@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Customer App</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/app.js"></script>
+</head>
+<body>
+    
+    <div ng-App="CustomerApp" ng-controller="CustomerCtrl">
+        <form class="form-horizontal" name="myForm">
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-12">
+                        <h3 class="col-md-4 control-label">Müşteri Kayıt</h3>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">Ad Soyad</label>
+                    <div class="col-md-4">
+                        <input ng-model="customer.AdSoyad" name="textinput" type="text" placeholder="Ad Soyad" class="form-control input-md" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="dt">Doğum Tarihi</label>
+                    <div class="col-md-4">
+                        <input ng-model="customer.DogumTarihi" name="textinput" type="date" placeholder="Doğum Tarihi" class="form-control input-md">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">Meslek</label>
+                    <div class="col-md-4">
+                        <input ng-model="customer.Meslek" name="textinput" type="text" placeholder="Meslek.." class="form-control input-md" required>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="selectbasic">Şehir</label>
+                    <div class="col-md-4">
+                        <select id="selectbasic" ng-model="customer.YasadigiSehir" name="selectbasic" class="form-control">
+                            <option value="">Seçiniz</option>
+                            <option value="İstanbul">İstanbul</option>
+                            <option value="Ankara">Ankara</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="email">E-mail</label>
+                    <div class="col-md-4">
+                        <input id="email" ng-model="customer.Email" name="email" type="email" placeholder="aaa@mail.com" class="form-control input-md" required="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="tel">Telefon</label>
+                    <div class="col-md-4">
+                        <input id="tel" ng-model="customer.Tel" name="tel" type="text" placeholder="555-555-5555" class="form-control input-md">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">Web Site</label>
+                    <div class="col-md-4">
+                        <input id="textinput" ng-model="customer.WebSite" name="textinput" type="url" placeholder="Web Site.." class="form-control input-md">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">Notlar</label>
+                    <div class="col-md-4">
+                        <textarea class="form-control" ng-model="customer.Notlar" rows="5" id="comment"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">Adres</label>
+                    <div class="col-md-4">
+                        <textarea class="form-control" ng-model="customer.Adres" rows="5" id="comment"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Reklam Maili</label>
+                    <div class="col-md-4">
+                        <input type="checkbox" ng-model="customer.ReklamMaili" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Cinsiyet</label>
+                    <div class="col-md-4">
+                        <label class="col-md-4 radio-inline"><input type="radio" ng-model="customer.Cinsiyet" value="Kadın" required>Kadın</label>
+                        <label class="col-md-4 radio-inline"><input type="radio" ng-model="customer.Cinsiyet" value="Erkek">Erkek</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-7 control-label"></label>
+                    <div class="col-md-4">
+                        <input href="index.html" type="submit" value="Kaydet" class="btn btn-success btn-lg" ng-click="kaydet(customer)" />
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>

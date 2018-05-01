@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html ng-app="CustomerApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Customer App</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+    <div class="container" ng-controller="CustomerCtrl">
+        <div class="row">
+            <div class="col-md-12">
+                <br />
+                <input type="text" class="input-lg form-control" ng-model="arama" placeholder="Müşteri Ara" /><br />
+                <a href="/musteriKayit.html" class="btn btn-info btn-lg" role="button">Yeni Kayıt Ekle</a><br /><br />
+                <table class="table table-hover table-stripped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ad Soyad</th>
+                            <th>Cinsiyet</th>
+                            <th>Meslek</th>
+                            <th>Doğum Tarihi</th>
+                            <th>Email</th>
+                            <th>Web Site</th>
+                            <th>Reklam Maili</th>
+                            <th>Adres</th>
+                            <th>Şehir</th>
+                            <th>Tel</th>
+                            <th>Not</th>
+                            <th>Düzenle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="(key, customer) in customers | filter:arama">
+                            <td>{{key+1}}</td>
+                            <td>{{customer.AdSoyad}}</td>
+                            <td>{{customer.Cinsiyet}}</td>
+                            <td>{{customer.Meslek}}</td>
+                            <td>{{customer.DogumTarihi | date:'dd/MM/yyyy'}}</td>
+                            <td>{{customer.Email}}</td>
+                            <td>{{customer.WebSite}}</td>
+                            <td>{{customer.ReklamMaili}}</td>
+                            <td>{{customer.Adres}}</td>
+                            <td>{{customer. YasadigiSehir}}</td>
+                            <td>{{customer.Tel}}</td>
+                            <td>{{customer.Notlar}}</td>
+                            <td>
+                                <input type="button" value="Düzenle" class="btn-block btn-success" data-toggle="modal" data-target="#myModal" ng-click="duzenle(customer)" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Müşteri Düzenle</h4>
+                    </div>
+                    <div class="modal-body">
+                        <fieldset>
+                            <div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label" for="textinput">Ad Soyad</label>
+                                    <div class="col-md-10">
+                                        <input ng-model="customer.AdSoyad" name="textinput" type="text" placeholder="Ad Soyad" class="form-control input-md" required>
+                                    </div>
+                                </div>
+                                <br /><br /><br />
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label" for="dt">Doğum Tarihi</label>
+                                    <div class="col-md-10">
+                                        <input ng-model="customer.DogumTarihi" name="textinput" type="date" class="form-control input-md">
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label" for="textinput">Meslek</label>
+                                    <div class="col-md-10">
+                                        <input ng-model="customer.Meslek" name="textinput" type="text" placeholder="Meslek.." class="form-control input-md" required>
+
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label" for="selectbasic">Şehir</label>
+                                    <div class="col-md-10">
+                                        <select id="selectbasic" ng-model="customer.YasadigiSehir" name="selectbasic" class="form-control">
+                                            <option value="">Seçiniz</option>
+                                            <option value="İstanbul">İstanbul</option>
+                                            <option value="Ankara">Ankara</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label" for="email">E-mail</label>
+                                    <div class="col-md-10">
+                                        <input id="email" ng-model="customer.Email" name="email" type="email" placeholder="aaa@mail.com" class="form-control input-md" required="">
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label" for="tel">Telefon</label>
+                                    <div class="col-md-10">
+                                        <input id="tel" ng-model="customer.Tel" name="tel" type="text" placeholder="555-555-5555" class="form-control input-md">
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label" for="textinput">Web Site</label>
+                                    <div class="col-md-10">
+                                        <input id="textinput" ng-model="customer.WebSite" name="textinput" type="url" placeholder="Web Site.." class="form-control input-md">
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label" for="textinput">Notlar</label>
+                                    <div class="col-md-10">
+                                        <textarea class="form-control" ng-model="customer.Notlar" rows="5" id="comment"></textarea>
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label" for="textinput">Adres</label>
+                                    <div class="col-md-10">
+                                        <textarea class="form-control" ng-model="customer.Adres" rows="5" id="comment"></textarea>
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Reklam Maili</label>
+                                    <div class="col-md-10">
+                                        <input type="checkbox" ng-model="customer.ReklamMaili">
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Cinsiyet</label>
+                                    <div class="col-md-6">
+                                        <label class="col-md-4 radio-inline"><input type="radio" ng-model="customer.Cinsiyet" value="Kadın" required>Kadın</label>
+                                        <label class="col-md-4 radio-inline"><input type="radio" ng-model="customer.Cinsiyet" value="Erkek">Erkek</label>
+                                    </div>
+                                </div>
+                                <br /><br />
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" value="Güncelle" ng-show="!isnew" class="btn btn-danger" data-dismiss="modal" ng-click="guncelle(customer)" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
